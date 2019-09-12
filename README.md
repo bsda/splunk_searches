@@ -37,8 +37,8 @@
 ```
 
 
-#### Get size of lookups  from search
-    My simple version counting only lines (which is not useful)
+### Get size of lookups  from search
+**My simple version counting only lines (which is not useful)**
 ```
 | rest /services/data/lookup-table-files splunk_server=local  
 | fields eai:data 
@@ -46,8 +46,10 @@
 | eval file=mvindex(split(file, "/"), -1), filename=file 
 |  map maxsearches=10000 search="|inputlookup $file$ | eval filename=$file$ | stats c by filename"
 ```
-    The really good version found in splunk answers
-    https://answers.splunk.com/answers/701881/is-there-a-search-to-show-bundle-size-in-the-dispa.html
+
+**The really good version found in splunk answers**
+https://answers.splunk.com/answers/701881/is-there-a-search-to-show-bundle-size-in-the-dispa.html
+
 ```
 |rest/services/data/lookup-table-files splunk_server=local
  
